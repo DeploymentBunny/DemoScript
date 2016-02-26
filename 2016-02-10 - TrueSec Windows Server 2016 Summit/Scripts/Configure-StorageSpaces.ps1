@@ -40,7 +40,3 @@ $ShareDir = md $VolumeDir\SOFSShare2
 New-SmbShare -Name Share01 -Path $ShareDir -FullAccess Everyone
 Set-SmbPathAcl -ShareName Share01
 
-# Cloud Witness
-# Set-ClusterQuorum –CloudWitness –AccountName tdwitness -AccessKey 'CnJjYExzYTCCcoeJhTJXvrWAK6F8CTfVB13PLlTTFyyR56AxtnoZYkosthlESOoslnHbhzDS7x6VRaJI+tRliA==' -verbose
-
-
