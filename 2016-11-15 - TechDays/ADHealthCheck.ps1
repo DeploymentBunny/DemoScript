@@ -13,6 +13,18 @@ foreach ($DCServer in $DCServers){
             }
     }
 
+    Write-Host "Getting debug logs on $DCServer" -ForegroundColor Green
+    Invoke-Command -ComputerName $DCServer -ScriptBlock {
+        Write-Host "C:\Windows\debug\PASSWD.LOG on $DCServer says:" -ForegroundColor Green
+        Get-Content C:\Windows\debug\PASSWD.LOG
+    }
+
+    Write-Host "Getting debug logs on $DCServer" -ForegroundColor Green
+    Invoke-Command -ComputerName $DCServer -ScriptBlock {
+        Write-Host "C:\Windows\debug\netlogon.log on $DCServer says:" -ForegroundColor Green
+        Get-Content C:\Windows\debug\netlogon.log
+    }
+
     Write-Host "Running DCDiag on $DCServer" -ForegroundColor Green
     Invoke-Command -ComputerName $DCServer -ScriptBlock {
         dcdiag.exe /test:netlogons /Q
@@ -24,6 +36,10 @@ foreach ($DCServer in $DCServers){
     Write-Host "Checking access to SYSVOL on $DCServer" -ForegroundColor Green
     Test-Path -Path \\$DCServer\sysvol
 
+    Write-Host "Get 20 last errors/warning on $DCServer" -ForegroundColor Green
+    Invoke-Command -ComputerName $DCServer -ScriptBlock {
+        Get-EventLog -LogName Application -Newest 20 -EntryType Error,Warning | Select-Object Source,Message,TimeGenerated
+    }
 
     Write-Host "Running BPA on $DCServer" -ForegroundColor Green
     Invoke-Command -ComputerName $DCServer -ScriptBlock {
