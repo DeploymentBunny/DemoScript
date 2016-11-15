@@ -23,4 +23,12 @@ foreach ($DCServer in $DCServers){
 
     Write-Host "Checking access to SYSVOL on $DCServer" -ForegroundColor Green
     Test-Path -Path \\$DCServer\sysvol
+
+
+    Write-Host "Running BPA on $DCServer" -ForegroundColor Green
+    Invoke-Command -ComputerName $DCServer -ScriptBlock {
+        $BPA = "Microsoft/Windows/DirectoryServices"
+        Invoke-BpaModel -BestPracticesModelId $BPA
+        Get-BpaResult -ModelID $BPA -Filter Noncompliant | Select-Object ResultNumber,Severity,Category,Title,Problem,Impact,Resolution
+    }
 }
