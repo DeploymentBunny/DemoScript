@@ -1,4 +1,19 @@
-﻿$DHCPServers = "SRVDC01.network.local"
+﻿<#
+.Synopsis
+    Script from TechDays Sweden 2016
+.DESCRIPTION
+    Script from TechDays Sweden 2016
+.NOTES
+    Author - Mikael Nystrom
+    Twitter: @mikael_nystrom
+    Blog   : http://deploymentbunny.com
+    Disclaimer:
+    This script is provided "AS IS" with no warranties, confers no rights and 
+    is not supported by the authors or Deployment Artist.
+.LINK
+    http://www.deploymentbunny.com
+#>
+$DHCPServers = "SRVDC01.network.local"
 Foreach($DHCPServer in $DHCPServers){
     Write-Host "Checking netaccess to $DCServer" -ForegroundColor Green
     Test-Connection -ComputerName $DCServer

@@ -1,4 +1,19 @@
-﻿$HyperVHosts = "demohost03.network.local"
+﻿<#
+.Synopsis
+    Script from TechDays Sweden 2016
+.DESCRIPTION
+    Script from TechDays Sweden 2016
+.NOTES
+    Author - Mikael Nystrom
+    Twitter: @mikael_nystrom
+    Blog   : http://deploymentbunny.com
+    Disclaimer:
+    This script is provided "AS IS" with no warranties, confers no rights and 
+    is not supported by the authors or Deployment Artist.
+.LINK
+    http://www.deploymentbunny.com
+#>
+$HyperVHosts = "demohost03.network.local"
 
 Foreach($HyperVHost in $HyperVHosts){
     Write-Host "Checking netaccess to $HyperVHost" -ForegroundColor Green
