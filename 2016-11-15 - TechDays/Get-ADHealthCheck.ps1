@@ -18,7 +18,7 @@ $DCServers = $getForest.domains | ForEach-Object {$_.DomainControllers} | ForEac
 
 foreach ($DCServer in $DCServers){
     Write-Host "Checking netaccess to $DCServer" -ForegroundColor Green
-    Test-Connection -ComputerName $DCServer
+    Test-NetConnection -ComputerName $DCServer
 
     Write-Host "Checking Services that should be running on $DCServer" -ForegroundColor Green
     Invoke-Command -ComputerName $DCServer -ScriptBlock {

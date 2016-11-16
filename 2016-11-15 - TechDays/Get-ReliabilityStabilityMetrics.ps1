@@ -54,8 +54,6 @@ $TheSadTruth = Foreach($Computer in $ComputersOnline.ComputerName){
     Get-RemoteComputerSystemInfo -ComputerName $Computer
 }
 
-$TheSadTruth | Out-GridView
-
 $Title = "Cloud"
 $Head = "Cloud"
 $TheSadTruth | Sort-Object -Property ComputerName | ConvertTo-Html -As Table `
@@ -79,5 +77,3 @@ elseif($_ -like "*<td>1</td>*"){$_ -replace "<tr>", "<tr bgcolor=Yellow>"}
 elseif($_ -like "*<td>0</td>*"){$_ -replace "<tr>", "<tr bgcolor=Red>"}
 else{$_}
 } > C:\inetpub\wwwroot\default.htm 
-
-Invoke-Expression C:\inetpub\wwwroot\default.htm
